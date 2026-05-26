@@ -13,3 +13,5 @@ SELECT 'P_01' AS product_id, 'I_01' AS ingredient_id;
 
 CREATE OR REPLACE TABLE `code-vipassana-497502.froyo_data.containsallergen` AS
 SELECT 'I_01' AS ingredient_id, 'Soy' AS allergen_name;
+
+
