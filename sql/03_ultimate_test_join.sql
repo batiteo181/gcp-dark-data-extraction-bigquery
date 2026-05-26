@@ -15,3 +15,4 @@ LEFT OUTER JOIN `code-vipassana-497502.froyo_data.containsallergen` a
   ON i.ingredient_id = a.ingredient_id
 WHERE UPPER(p.product_name) LIKE '%MIDNIGHT%SWIRL%' 
   AND a.allergen_name IS NOT NULL;
+
