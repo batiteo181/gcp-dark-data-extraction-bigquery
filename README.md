@@ -22,3 +22,13 @@ chmod +x scripts/01_gcp_infrastructure.sh
 ```
 <img width="1920" height="965" alt="image" src="https://github.com/user-attachments/assets/502bce2e-5bb5-41b1-a584-dda1698fde9d" />
 
+
+Xử lý dữ liệu và Chạy truy vấn phân tích
+Thực thi mã lệnh trong sql/02_override_corrupted_schema.sql để thiết lập lại dữ liệu sạch trên BigQuery Studio. Sau đó, chạy sql/03_ultimate_test_join.sql để nhận về kết quả phân tích dị ứng của sản phẩm mục tiêu.
+
+Công nghệ sử dụng
+Google Cloud Storage, Dataplex, BigLake Connection
+
+Google BigQuery, SQL (DDL/DML)
+
+Vertex AI (Gemini 1.5 Pro), Vertex AI Agent Builder
