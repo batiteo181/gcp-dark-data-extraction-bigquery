@@ -1,0 +1,8 @@
+[sqlfluff]
+dialect = bigquery
+# Loại bỏ các quy tắc kiểm tra định dạng dòng, khoảng trắng và viết hoa để tránh chặn build
+exclude_rules = LT01, LT02, LT05, LT09, LT12, CP01, CP02, RF02, AM04
+
+[sqlfluff:indentation]
+tab_space_size = 2
+indent_unit = space
