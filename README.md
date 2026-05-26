@@ -1,21 +1,19 @@
-# Dark Data Extraction: Unstructured PDFs to BigQuery
+# Unstructured Dark Data Ingestion & Semantic AI Agent Pipeline
 
-## Mục tiêu Dự án
-Xử lý "Dark Data" (Dữ liệu chìm). Trích xuất thông tin nghiệp vụ ẩn trong tệp PDF định dạng tự do (công thức, nhà cung cấp) và cấu trúc hóa thành cơ sở dữ liệu quan hệ phục vụ truy vấn tự động.
+Dự án triển khai một hệ thống tự động hóa xử lý dữ liệu chìm (Dark Data) quy mô doanh nghiệp trên nền tảng Google Cloud Platform. Hệ thống chuyển hóa hàng trăm tài liệu PDF công thức và chuỗi cung ứng phi cấu trúc thành dữ liệu quan hệ có khả năng truy vấn tức thời qua SQL và ngôn ngữ tự nhiên (AI Agent Chat).
 
-## Vấn đề Kỹ thuật
-Hệ thống tài liệu doanh nghiệp thường lưu trữ dưới dạng phi cấu trúc. Việc truy xuất thành phần gây dị ứng (Allergens) từ tài liệu công thức yêu cầu rà soát thủ công, dễ sai sót. Các luồng ETL truyền thống dùng biểu thức chính quy (Regex) thất bại trước ngôn ngữ tự nhiên phức tạp.
+## Kiến trúc Luồng Dữ liệu (End-to-End Architecture)
 
-## Kiến trúc Giải pháp
-Xây dựng đường ống dữ liệu trên Google Cloud Platform:
-1. **Data Lake**: Lưu trữ tệp PDF thô trên Cloud Storage.
-2. **Semantic Extraction**: Ứng dụng suy luận ngữ nghĩa để phân tích nội dung.
-3. **Data Warehouse**: Chuẩn hóa dữ liệu đầu ra thành cấu trúc liên kết khóa ngoại (Foreign Keys) trên BigQuery.
-4. **Data Cleaning**: Gỡ lỗi khoảng trắng ẩn ngầm (`\r`, `""`) sinh ra trong quá trình Load CSV để đảm bảo tính toàn vẹn của phép nối `INNER JOIN`.
+1. **Hồ chứa dữ liệu (Data Lake)**: Tài liệu thô được đẩy vào Cloud Storage sử dụng `gcloud storage`.
+2. **Khám phá siêu dữ liệu (Metadata Discovery)**: Cấu hình Google Cloud Dataplex (Knowledge Catalog) quét tự động nhằm định danh tài sản dữ liệu thông qua kiến trúc BigLake Connection.
+3. **Suy luận ngữ nghĩa (Semantic Inference)**: Khai thác Vertex AI (Gemini 1.5 Pro) trích xuất tự động các thực thể ẩn (Thành phần, Chất dị ứng) trong văn bản tự do.
+4. **Xử lý sự cố Warehouse (Troubleshooting & Cleaning)**: Can thiệp sâu bằng BigQuery SQL DDL/DML để xử lý lỗi dị thường định dạng hệ thống (Null values, Corrupted string fields), tái xây dựng hệ thống khóa ngoại chuẩn hóa.
+5. **Đóng gói tri thức (AI Agent Grounding)**: Tích hợp cấu trúc bảng BigQuery vào Vertex AI Agent Builder để phục vụ giao tiếp ngôn ngữ tự nhiên.
 
-## Kết quả
-Hợp nhất dữ liệu thành công. Cho phép truy vấn tức thời thông tin dị ứng của sản phẩm bằng SQL tiêu chuẩn, giảm thời gian tra cứu từ hàng giờ xuống tính bằng giây.
+## Hướng dẫn Vận hành Mã nguồn
 
-## Mã nguồn
-- [Thiết lập Schema & Dữ liệu (DDL/DML)](./sql/create_schema.sql)
-- [Truy vấn Phân tích & Trích xuất (Analytical Query)](./sql/extract_allergens.sql)
+### Thiết lập môi trường và cấu trúc bảng
+Chạy lệnh cấu hình hạ tầng trong Cloud Shell:
+```bash
+chmod +x scripts/01_gcp_infrastructure.sh
+./scripts/01_gcp_infrastructure.sh
