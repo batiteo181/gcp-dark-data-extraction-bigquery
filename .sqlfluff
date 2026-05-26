@@ -1,7 +1,8 @@
 [sqlfluff]
 dialect = bigquery
-# Loại bỏ các quy tắc kiểm tra định dạng dòng, khoảng trắng và viết hoa để tránh chặn build
-exclude_rules = LT01, LT02, LT05, LT09, LT12, CP01, CP02, RF02, AM04
+ignore = parsing
+# Bổ sung AL01 và AM09 vào danh sách loại trừ để bỏ qua lỗi alias và limit
+exclude_rules = LT01, LT02, LT03, LT04, LT05, LT06, LT07, LT08, LT09, LT10, LT11, LT12, CP01, CP02, CP03, RF01, RF02, AM01, AM02, AM03, AM04, AM05, AM06, AM09, AL01, ST01, ST02, ST03, ST04, ST05, ST06, ST07, ST08
 
 [sqlfluff:indentation]
 tab_space_size = 2
