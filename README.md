@@ -18,7 +18,6 @@ Chạy lệnh cấu hình hạ tầng trong Cloud Shell:
 chmod +x scripts/01_gcp_infrastructure.sh
 ./scripts/01_gcp_infrastructure.sh
 
-<img width="1920" height="965" alt="image" src="https://github.com/user-attachments/assets/090baa67-c08b-4cfc-9839-6110b3edd3af" />
 
 ```
 <img width="1920" height="965" alt="image" src="https://github.com/user-attachments/assets/502bce2e-5bb5-41b1-a584-dda1698fde9d" />
